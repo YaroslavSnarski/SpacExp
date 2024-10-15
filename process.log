@@ -1,0 +1,19 @@
+2024-10-15 15:51:17,166 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\03_distance.pdf in 0.10 seconds
+2024-10-15 15:51:17,208 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\04_distance.pdf in 0.04 seconds
+2024-10-15 15:51:17,266 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\06_ML-with-text.pdf in 0.06 seconds
+2024-10-15 15:51:17,285 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\373724eng.pdf in 0.02 seconds
+2024-10-15 15:51:17,313 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\374447eng.pdf in 0.03 seconds
+2024-10-15 15:51:17,426 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\algosss.png in 0.11 seconds
+2024-10-15 15:51:17,433 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\aritcle.png in 0.01 seconds
+2024-10-15 15:51:17,560 - INFO - Excel processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\gini2023.xlsx in 0.13 seconds
+2024-10-15 15:51:21,224 - INFO - DOCX processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\litra.docx in 3.66 seconds
+2024-10-15 15:51:21,226 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\mainBanner.png in 0.00 seconds
+2024-10-15 15:51:21,241 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2023-11-03_23-20-33.jpg in 0.01 seconds
+2024-10-15 15:51:21,251 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2024-09-17_21-08-49.jpg in 0.01 seconds
+2024-10-15 15:51:21,283 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\PresentationSnarski_merged.pdf in 0.03 seconds
+2024-10-15 15:51:21,510 - INFO - Audio processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\sjuzanna-vesla.mp3 in 0.23 seconds
+2024-10-15 15:51:21,514 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\snarski_september_2024.pdf in 0.00 seconds
+2024-10-15 15:51:21,982 - INFO - Video processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\video.mp4 in 0.47 seconds
+2024-10-15 15:51:22,013 - INFO - Image processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\дз1_снарский_листочек.jpg in 0.01 seconds
+2024-10-15 15:51:22,161 - INFO - Results saved to output.csv
+2024-10-15 15:51:22,162 - INFO - Total processing time: 5.10 seconds
