@@ -1,0 +1,34 @@
+2024-10-15 10:34:01,796 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\03_distance.pdf: name 'datetime' is not defined
+2024-10-15 10:34:01,865 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\04_distance.pdf: name 'datetime' is not defined
+2024-10-15 10:34:01,942 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\06_ML-with-text.pdf: name 'datetime' is not defined
+2024-10-15 10:34:01,961 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\373724eng.pdf: name 'datetime' is not defined
+2024-10-15 10:34:01,999 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\374447eng.pdf: name 'datetime' is not defined
+2024-10-15 10:34:02,068 - INFO - Excel processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\gini2023.xlsx in 0.07 seconds
+2024-10-15 10:34:02,068 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\litra.docx
+2024-10-15 10:34:02,068 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\mainBanner.png
+2024-10-15 10:34:02,068 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2023-11-03_23-20-33.jpg
+2024-10-15 10:34:02,068 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2024-09-17_21-08-49.jpg
+2024-10-15 10:34:02,097 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\PresentationSnarski_merged.pdf: name 'datetime' is not defined
+2024-10-15 10:34:02,097 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\sjuzanna-vesla.mp3
+2024-10-15 10:34:02,100 - ERROR - Error processing PDF D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\snarski_september_2024.pdf: name 'datetime' is not defined
+2024-10-15 10:34:02,100 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\video.mp4
+2024-10-15 10:34:02,100 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\дз1_снарский_листочек.jpg
+2024-10-15 10:34:02,196 - INFO - Results saved to output.csv
+2024-10-15 10:34:02,197 - INFO - Total processing time: 0.47 seconds
+2024-10-15 10:38:33,275 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\03_distance.pdf in 0.07 seconds
+2024-10-15 10:38:33,301 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\04_distance.pdf in 0.03 seconds
+2024-10-15 10:38:33,365 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\06_ML-with-text.pdf in 0.06 seconds
+2024-10-15 10:38:33,393 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\373724eng.pdf in 0.03 seconds
+2024-10-15 10:38:33,414 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\374447eng.pdf in 0.02 seconds
+2024-10-15 10:38:33,485 - INFO - Excel processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\gini2023.xlsx in 0.07 seconds
+2024-10-15 10:38:33,485 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\litra.docx
+2024-10-15 10:38:33,485 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\mainBanner.png
+2024-10-15 10:38:33,485 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2023-11-03_23-20-33.jpg
+2024-10-15 10:38:33,486 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\photo_2024-09-17_21-08-49.jpg
+2024-10-15 10:38:33,501 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\PresentationSnarski_merged.pdf in 0.01 seconds
+2024-10-15 10:38:33,501 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\sjuzanna-vesla.mp3
+2024-10-15 10:38:33,512 - INFO - PDF processed: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\snarski_september_2024.pdf in 0.01 seconds
+2024-10-15 10:38:33,513 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\video.mp4
+2024-10-15 10:38:33,513 - WARNING - Unsupported file type: D:\Users\snarski\AppData\Local\Programs\Python\Python311\hw1_prog\only_useful_files\дз1_снарский_листочек.jpg
+2024-10-15 10:38:33,595 - INFO - Results saved to output.csv
+2024-10-15 10:38:33,595 - INFO - Total processing time: 0.41 seconds
