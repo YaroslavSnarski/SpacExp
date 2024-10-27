@@ -54,11 +54,13 @@ class FileProcessor:
         stats = os.stat(filepath)
         creation_time = datetime.fromtimestamp(stats.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
         modification_time = datetime.fromtimestamp(stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')
+        extension = os.path.splitext(filepath)[1][1:]
 
         return {
             "file_path": filepath,
             "file_name": os.path.basename(filepath),
             "file_size": stats.st_size,
             "creation_time": creation_time,
-            "modification_time": modification_time
+            "modification_time": modification_time,
+            "extension": extension
         }
