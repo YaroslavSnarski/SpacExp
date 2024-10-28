@@ -7732,3 +7732,7 @@
 2024-10-28 21:19:06,839 - process - INFO - Image processed: D:/YandexDisk/gold_standard_dataset_snarski\Files\OTRR_YoursTrulyJohnnyDollar_Singles_Bob_Bailey\YTJD 1956-11-02 510 The Silent Queen Matter - Ep 5_spectrogram.png in 0.01 seconds
 2024-10-28 21:19:06,855 - process - INFO - Image processed: D:/YandexDisk/gold_standard_dataset_snarski\Files\OTRR_YoursTrulyJohnnyDollar_Singles_Bob_Bailey\__ia_thumb.jpg in 0.01 seconds
 2024-10-28 21:19:07,871 - process - INFO - Results saved to d:\GitHubProjects\output_analysis.csv
+2024-10-28 21:20:49,514 - utils.content_search - INFO - Found in D:/YandexDisk/gold_standard_dataset_snarski\Files\Motivation Letter Snarski.docx
+2024-10-28 21:20:49,530 - utils.content_search - ERROR - Error reading D:/YandexDisk/gold_standard_dataset_snarski\Files\~$tivation Letter Snarski.docx: Package not found at 'D:/YandexDisk/gold_standard_dataset_snarski\Files\~$tivation Letter Snarski.docx'
+2024-10-28 21:28:04,179 - utils.content_search - INFO - Found in D:/YandexDisk/gold_standard_dataset_snarski\Files\Motivation Letter Snarski.docx
+2024-10-28 21:28:04,180 - utils.content_search - ERROR - Error reading D:/YandexDisk/gold_standard_dataset_snarski\Files\~$tivation Letter Snarski.docx: Package not found at 'D:/YandexDisk/gold_standard_dataset_snarski\Files\~$tivation Letter Snarski.docx'
