@@ -6,6 +6,7 @@ import logging
 from PyPDF2 import PdfReader
 from datetime import datetime
 from .base_processor import FileProcessor
+import re
 
 process_logger = logging.getLogger('process')
 error_logger = logging.getLogger('error')
@@ -36,8 +37,22 @@ class PDFProcessor(FileProcessor):
             error_logger.error(f"Error processing PDF {filepath}: {e}")
             return {"error": str(e)}
 
+#    def parse_pdf_date(self, date_str):
+#        if date_str.startswith('D:'):
+#            date_str = date_str[2:].split('+')[0].replace("Z", "")
+#            return datetime.strptime(date_str, '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S')
+#        return date_str
+
     def parse_pdf_date(self, date_str):
         if date_str.startswith('D:'):
-            date_str = date_str[2:].split('+')[0].replace("Z", "")
-            return datetime.strptime(date_str, '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S')
+            # Remove 'D:' prefix and split timezone offset, if any
+            date_str = date_str[2:]
+            date_main_part = re.split(r'[\+\-]', date_str)[0]  # Splits and keeps only the main date
+
+            try:
+                parsed_date = datetime.strptime(date_main_part, '%Y%m%d%H%M%S')
+                return parsed_date.strftime('%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                error_logger.error(f"Date parsing error for {date_str}")
+                return "Unknown Date"
         return date_str

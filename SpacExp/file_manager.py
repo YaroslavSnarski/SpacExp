@@ -5,10 +5,11 @@ import logging
 import pandas as pd
 from .pdf_processor import PDFProcessor
 from .image_processor import ImageProcessor
-from .docx_processor import DOCXProcessor
+from .docx_processor import DOCXProcessor, DOCProcessor
 from .excel_processor import ExcelProcessor
 from .audio_processor import AudioProcessor
 from .video_processor import VideoProcessor
+from .base_processor import FileProcessor
 
 process_logger = logging.getLogger('process')
 error_logger = logging.getLogger('error')
@@ -18,11 +19,15 @@ class FileManager:
         self.directory = directory
         self.output_file = output_file
 
+        # Создаем базовый обработчик, который будет использоваться для неизвестных типов файлов
+        self.default_handler = FileProcessor()
+
         self.handlers = {
             'application/pdf': PDFProcessor(),
             'image': ImageProcessor(),
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document': DOCXProcessor(),
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet': ExcelProcessor(),
+            'application/msword': DOCProcessor(),  # Обработчик для .doc файлов
             'audio': AudioProcessor(),
             'video': VideoProcessor()
         }
@@ -36,10 +41,13 @@ class FileManager:
             handler = self.get_handler(mime_type)
             if handler:
                 file_data = handler.process(filepath)
-                data.append(file_data)
             else:
-                process_logger.warning(f"Unsupported file type: {filepath}")
-
+                # Используем стандартный обработчик для получения общей информации
+                file_data = self.default_handler.get_generic_info(filepath)
+                process_logger.warning(f"Unsupported file type. Processed with default handler: {filepath}")
+        
+            if file_data:
+                data.append(file_data)  # Добавляем данные в итоговый список
         self.save_results(data)
         total_time = time.time() - start_time
         process_logger.info(f"Total processing time: {total_time:.2f} seconds")

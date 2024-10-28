@@ -8,6 +8,9 @@ from mutagen import File as MutagenFile  # Импорт библиотеки Mut
 from .base_processor import FileProcessor  # Use absolute import
 
 class AudioProcessor(FileProcessor):
+    def __init__(self):
+        # Initialize a set to keep track of all unique tag keys
+        self.all_tag_keys = set()
     def process(self, filepath):
         try:
             start_time = time.time()
@@ -26,6 +29,12 @@ class AudioProcessor(FileProcessor):
                 "audio_bitrate": audio_bitrate,
                 "audio_sample_rate": audio_sample_rate,
             })
+            # Update the set of all tag keys encountered
+            self.all_tag_keys.update(tags.keys())
+
+            # Add each tag key-value pair to file_info with "tags_" prefix
+            for key, value in tags.items():
+                file_info[f"tags_{key}"] = value
 
             elapsed_time = time.time() - start_time
             logging.info(f"Audio processed: {filepath} in {elapsed_time:.2f} seconds")
