@@ -1,0 +1,12 @@
+{% extends 'spacexapp/base.html' %}
+
+{% block title %}Ошибка загрузки CSV{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1>Произошла ошибка при загрузке CSV</h1>
+        <p>Во время обработки CSV файла возникла ошибка:</p>
+        <p><strong>{{ error }}</strong></p>
+        <a href="{% url 'upload_csv' %}" class="btn btn-warning">Попробовать снова</a>
+    </div>
+{% endblock %}

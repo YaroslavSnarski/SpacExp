@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Файловый анализатор SpacExp">
+    <meta name="author" content="Your Name">
+    <meta name="generator" content="Django">
+    <title>{% block title %}Файловый анализатор SpacExp{% endblock %}</title>
+
+    <!-- Canonical link for SEO -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/cover/">
+
+    <!-- Статические файлы для CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/cover.css' %}">
+
+    <!-- Стиль для текущей страницы -->
+    <style>
+        /* Растягиваем фон на всю страницу */
+        body, html {
+            height: 100%;
+            margin: 0;
+            background-color: #1a1a1a; /* Темно-серый фон */
+            color: #e0e0e0; /* Светлый текст */
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Стили для навигационного меню */
+        nav.navbar {
+            background-color: #333333; /* Темно-серый фон меню */
+            color: white;
+        }
+
+        nav.navbar a.nav-link {
+            color: #d3d3d3 !important;  /* Светло-серые ссылки */
+        }
+
+        nav.navbar a.nav-link:hover {
+            color: #ffffff !important;  /* Белые ссылки при наведении */
+        }
+
+        /* Стили для таблиц */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #444444;  /* Темно-серая граница */
+        }
+
+        th {
+            background-color: #555555; /* Темно-серый фон для заголовков */
+            color: #ffffff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #333333; /* Темный фон для четных строк */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #444444; /* Еще более темный фон для нечетных строк */
+        }
+
+        tr:hover {
+            background-color: #666666; /* Цвет при наведении на строку */
+        }
+
+        .btn-bd-primary {
+            --bd-violet-bg: #333333;
+            --bd-violet-rgb: 51, 51, 51;
+            --bs-btn-font-weight: 600;
+            --bs-btn-color: var(--bs-white);
+            --bs-btn-bg: var(--bd-violet-bg);
+            --bs-btn-border-color: var(--bd-violet-bg);
+            --bs-btn-hover-color: var(--bs-white);
+            --bs-btn-hover-bg: #555555;
+            --bs-btn-hover-border-color: #555555;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="/">Файловый анализатор SpacExp</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="/analyze/">Статистика</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+
+</html>
