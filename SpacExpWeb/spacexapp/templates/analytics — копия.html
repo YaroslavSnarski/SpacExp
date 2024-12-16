@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика</title>
+    <style>
+        /* Основной стиль для страницы */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        /* Сайдбар */
+        nav {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        nav a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        nav a:hover {
+            background-color: #ddd;
+        }
+        /* Основная часть страницы */
+        .content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+        /* Кнопка */
+        .btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Сайдбар -->
+    <nav>
+        <a href="{% url 'index' %}">Главная страница</a>
+        <a href="{% url 'analytics' %}">Аналитика</a>
+    </nav>
+
+    <!-- Основной контент -->
+    <div class="content">
+        <h1>Аналитика</h1>
+
+        <!-- Кнопка "Вернуться назад" -->
+        <a href="{% url 'select_folder' %}" class="btn">Вернуться назад</a>
+
+        <h2>Файлы по расширениям</h2>
+        <ul>
+            {% for item in files_by_extension %}
+            <li>{{ item.extension }}: {{ item.count }}</li>
+            {% endfor %}
+        </ul>
+
+        <h2>Топ 10 самых больших файлов</h2>
+        <table>
+            <tr>
+                <th>Имя файла</th>
+                <th>Размер (МБ)</th>
+            </tr>
+            {% for file in largest_files %}
+            <tr>
+                <td>{{ file.file_name }}</td>
+                <td>{{ file.file_size|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Топ 10 самых больших изображений</h2>
+        <table>
+            <tr>
+                <th>Имя файла</th>
+                <th>Ширина</th>
+                <th>Высота</th>
+            </tr>
+            {% for image in largest_images %}
+            <tr>
+                <td>{{ image.file_name }}</td>
+                <td>{{ image.image_width }}</td>
+                <td>{{ image.image_height }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Топ 10 документов по количеству страниц</h2>
+        <table>
+            <tr>
+                <th>Имя файла</th>
+                <th>Количество страниц</th>
+            </tr>
+            {% for doc in documents_by_pages %}
+            <tr>
+                <td>{{ doc.file_name }}</td>
+                <td>{{ doc.num_pages }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+
+</body>
+</html>

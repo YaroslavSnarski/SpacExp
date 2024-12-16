@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Analysis</title>
+</head>
+<body>
+    <h1>File Analysis Results</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>File Path</th>
+                <th>File Name</th>
+                <th>File Size</th>
+                <th>Creation Time</th>
+                <th>Modification Time</th>
+                <th>Extension</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for file in files_data %}
+            <tr>
+                <td>{{ file.file_path }}</td>
+                <td>{{ file.file_name }}</td>
+                <td>{{ file.file_size }}</td>
+                <td>{{ file.creation_time }}</td>
+                <td>{{ file.modification_time }}</td>
+                <td>{{ file.extension }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

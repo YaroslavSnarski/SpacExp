@@ -1,0 +1,45 @@
+<!-- scan_folder.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор папки для сканирования</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Выберите папку для сканирования</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сканировать папку</button>
+    </form>
+
+    {% if task_id %}
+    <h2>Обработка файлов...</h2>
+    <progress id="progress_bar" value="0" max="100"></progress>
+    <p id="progress_text">0%</p>
+
+    <script>
+        // Запрашиваем прогресс каждый 1 секунду
+        var taskId = "{{ task_id }}";
+        var progressInterval = setInterval(function() {
+            $.get(`/get_task_progress/${taskId}/`, function(data) {
+                var progress = data.progress;
+                $('#progress_bar').val(progress);
+                $('#progress_text').text(progress + '%');
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    alert("Файлы успешно обработаны!");
+                }
+            });
+        }, 1000);  // Обновляем каждый 1 секунду
+    </script>
+    {% endif %}
+
+    <br><br>
+    <a href="/">Назад на главную</a>
+</body>
+</html>

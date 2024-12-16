@@ -1,0 +1,35 @@
+file_path,file_name,file_size,creation_time,modification_time,extension
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\admin.py,admin.py,66,2024-12-16 20:46:52,2024-12-16 20:46:52,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\apps.py,apps.py,156,2024-12-16 20:46:52,2024-12-16 20:46:52,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\models.py,models.py,775,2024-12-16 20:46:52,2024-12-16 22:24:12,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\tests.py,tests.py,63,2024-12-16 20:46:52,2024-12-16 20:46:52,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\urls.py,urls.py,329,2024-12-16 21:35:02,2024-12-16 23:02:54,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\views — копия.py,views — копия.py,3074,2024-12-16 23:37:14,2024-12-16 23:36:48,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\views.py,views.py,2867,2024-12-16 20:46:52,2024-12-16 23:37:30,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__init__.py,__init__.py,0,2024-12-16 20:46:52,2024-12-16 20:46:52,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\0001_initial.py,0001_initial.py,1056,2024-12-16 21:49:49,2024-12-16 21:49:49,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\0002_rename_height_fileanalysis_image_height_and_more.py,0002_rename_height_fileanalysis_image_height_and_more.py,693,2024-12-16 22:28:33,2024-12-16 22:28:33,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\__init__.py,__init__.py,0,2024-12-16 20:46:52,2024-12-16 20:46:52,py
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\__pycache__\0001_initial.cpython-311.pyc,0001_initial.cpython-311.pyc,1586,2024-12-16 21:49:52,2024-12-16 21:49:52,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\__pycache__\0002_rename_height_fileanalysis_image_height_and_more.cpython-311.pyc,0002_rename_height_fileanalysis_image_height_and_more.cpython-311.pyc,948,2024-12-16 22:28:36,2024-12-16 22:28:36,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\migrations\__pycache__\__init__.cpython-311.pyc,__init__.cpython-311.pyc,178,2024-12-16 21:46:27,2024-12-16 21:46:27,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\static\css\styles.css,styles.css,1143,2024-12-16 23:06:41,2024-12-16 23:07:10,css
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\analytics — копия.html,analytics — копия.html,3900,2024-12-16 22:47:10,2024-12-16 22:40:08,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\analytics.html,analytics.html,3426,2024-12-16 22:58:11,2024-12-16 23:04:22,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\index.html,index.html,1173,2024-12-16 22:55:37,2024-12-16 23:10:06,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\index1.html,index1.html,231,2024-12-16 22:54:52,2024-12-16 21:39:57,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\select_folder.html,select_folder.html,5532,2024-12-16 23:03:12,2024-12-16 23:34:36,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\select_folder1.html,select_folder1.html,2110,2024-12-16 22:58:11,2024-12-16 22:47:28,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\css\styles.css,styles.css,586,2024-12-16 22:48:41,2024-12-16 22:48:50,css
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\analytics — копия.html,analytics — копия.html,1331,2024-12-16 22:35:04,2024-12-16 22:24:58,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\analytics.html,analytics.html,2106,2024-12-16 21:40:26,2024-12-16 22:47:19,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\index.html,index.html,231,2024-12-16 22:46:06,2024-12-16 21:39:57,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\index_fail.html,index_fail.html,2236,2024-12-16 21:39:48,2024-12-16 22:46:20,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\select_folder — копия.html,select_folder — копия.html,308,2024-12-16 22:35:38,2024-12-16 21:40:18,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\templates\raw_spacexapp\select_folder.html,select_folder.html,2110,2024-12-16 21:40:05,2024-12-16 22:47:28,html
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\admin.cpython-311.pyc,admin.cpython-311.pyc,222,2024-12-16 21:45:12,2024-12-16 21:45:12,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\apps.cpython-311.pyc,apps.cpython-311.pyc,544,2024-12-16 21:45:11,2024-12-16 21:45:11,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\models.cpython-311.pyc,models.cpython-311.pyc,1332,2024-12-16 22:24:14,2024-12-16 22:24:14,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\urls.cpython-311.pyc,urls.cpython-311.pyc,557,2024-12-16 23:02:55,2024-12-16 23:02:55,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\views.cpython-311.pyc,views.cpython-311.pyc,3976,2024-12-16 23:37:32,2024-12-16 23:37:32,pyc
+D:\GitHubProjects\SpacExp\SpacExpWeb\spacexapp\__pycache__\__init__.cpython-311.pyc,__init__.cpython-311.pyc,167,2024-12-16 21:44:36,2024-12-16 21:44:36,pyc

@@ -1,0 +1,36 @@
+<!-- statistics.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ статистики</title>
+</head>
+<body>
+    <h1>Анализ статистики</h1>
+    <p>Общее количество файлов: {{ total_files }}</p>
+    <p>Общий размер файлов: {{ total_size }} байт</p>
+    
+    <h2>Пример данных:</h2>
+    <table border="1">
+        <tr>
+            <th>Путь к файлу</th>
+            <th>Имя файла</th>
+            <th>Размер файла</th>
+            <th>Дата создания</th>
+            <th>Дата изменения</th>
+        </tr>
+        {% for row in data %}
+        <tr>
+            <td>{{ row.file_path }}</td>
+            <td>{{ row.file_name }}</td>
+            <td>{{ row.file_size }}</td>
+            <td>{{ row.creation_time }}</td>
+            <td>{{ row.modification_time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+    <a href="/">Назад на главную</a>
+</body>
+</html>

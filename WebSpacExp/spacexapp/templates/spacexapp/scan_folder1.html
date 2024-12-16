@@ -1,0 +1,34 @@
+{% extends 'spacexapp/base.html' %}
+
+{% block title %}Сканирование папки{% endblock %}
+
+{% block content %}
+    <h1>Выберите папку для сканирования</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="folder_path">Путь к папке:</label>
+        <input type="text" id="folder_path" name="folder_path" required>
+        <button type="submit">Сканировать папку</button>
+    </form>
+
+
+    {% if files_data %}
+        <h2>Результаты анализа</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Имя файла</th>
+                    <th>Размер (в байтах)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for file in files_data %}
+                    <tr>
+                        <td>{{ file.name }}</td>
+                        <td>{{ file.size }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

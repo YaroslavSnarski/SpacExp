@@ -1,11 +1,91 @@
 import csv
-from django.shortcuts import render
+from django.conf import settings
+from django.shortcuts import render, redirect
+from django.http import JsonResponse, HttpResponse
 from django.utils.dateparse import parse_datetime
 from django.utils import timezone
-from .forms import CSVUploadForm
 from .models import FileMetadata
+from .models import FileRecord  # Модель, которая будет хранить данные файлов
 from django.db.models import Count, F, Q, Sum
 from django.db import transaction
+import sys
+import os
+import shutil  # Для удаления папки
+
+from .forms import CSVUploadForm
+from .forms import FolderSelectionForm  # Форма для выбора папки
+#from .tasks import index_files  # Импортируем задачу для обработки файлов
+import pandas as pd
+from spacexapp.models import FileAnalysis
+
+# Добавляем путь к модулю SpacExp
+sys.path.append(os.path.dirname(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'SpacExp'))))
+from SpacExp.file_manager import FileManager  # Теперь можно импортировать FileManager
+
+# Представление для статистики
+def view_statistics(request):
+    # Получаем все статистические данные из базы
+    total_size_gb = FileRecord.objects.all().aggregate(models.Sum('size'))['size__sum'] / (1024 ** 3)
+    
+    # Статистика по расширениям файлов
+    stats_by_extension = FileRecord.objects.values('extension').annotate(count=models.Count('id'))
+    
+    # Топ 10 самых больших файлов
+    largest_files = FileRecord.objects.order_by('-size')[:10]
+    
+    # Топ 10 изображений по площади
+    largest_images = FileRecord.objects.filter(extension__in=['jpg', 'png', 'jpeg']).order_by('-area')[:10]
+    
+    # Топ 10 документов по количеству страниц
+    largest_docs = FileRecord.objects.filter(extension__in=['pdf', 'docx', 'doc']).order_by('-page_count')[:10]
+    
+    return render(request, 'spacexapp/statistics.html', {
+        'total_size_gb': total_size_gb,
+        'stats_by_extension': stats_by_extension,
+        'largest_files': largest_files,
+        'largest_images': largest_images,
+        'largest_docs': largest_docs,
+    })
+
+def scan_folder(request):
+    files_processed = False  # Флаг для отображения кнопки перехода на страницу статистики
+
+    if request.method == 'POST' and 'folder_path' in request.POST:
+        # Получаем путь к выбранной папке
+        folder_path = request.POST['folder_path']
+        
+        if os.path.exists(folder_path) and os.path.isdir(folder_path):
+            # Если путь существует и это папка, запускаем анализ
+            output_file = 'output.csv'  # Можно указать путь для сохранения результатов
+            file_manager = FileManager(folder_path, output_file)
+            file_manager.run()  # Запуск обработки файлов
+            
+            files_processed = True  # Устанавливаем флаг успешной обработки
+
+        else:
+            return HttpResponse("Ошибка: выбранный путь не является существующей папкой.")
+    
+    # Если запрос GET, отображаем форму для выбора папки
+    form = FolderSelectionForm()
+    return render(request, 'spacexapp/scan_folder.html', {'form': form, 'files_processed': files_processed})
+
+# Представление для получения прогресса выполнения задачи
+def get_task_progress(request, task_id):
+    from celery.result import AsyncResult
+    task = AsyncResult(task_id)
+    if task.state == 'PROGRESS':
+        return JsonResponse({'progress': task.info.get('progress', 0)})
+    elif task.state == 'SUCCESS':
+        return JsonResponse({'progress': 100})
+    return JsonResponse({'progress': 0})
+
+def analyze_data(request):
+    # Получаем все данные из базы данных
+    files_data = FileAnalysis.objects.all()
+
+    return render(request, 'spacexapp/analyze_data.html', {'files_data': files_data})
+
+
 
 def index(request):
     return render(request, 'spacexapp/index.html')
@@ -152,3 +232,5 @@ def analyze_files(request):
 
 
     return render(request, "spacexapp/analyze_files.html", context)
+
+

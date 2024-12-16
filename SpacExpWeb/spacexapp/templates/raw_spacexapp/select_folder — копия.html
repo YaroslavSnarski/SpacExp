@@ -1,0 +1,7 @@
+<h1>Выберите папку для анализа</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="directory">Путь к папке:</label>
+    <input type="text" id="directory" name="directory" required>
+    <button type="submit">Проанализировать</button>
+</form>

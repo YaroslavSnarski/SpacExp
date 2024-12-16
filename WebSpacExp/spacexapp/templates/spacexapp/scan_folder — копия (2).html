@@ -1,0 +1,28 @@
+<!-- scan_folder.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор папки для сканирования</title>
+</head>
+<body>
+    <h1>Выберите папку для сканирования</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Сканировать папку</button>
+    </form>
+
+    {% if files_processed %}
+    <h2>Файлы успешно обработаны и сохранены в CSV!</h2>
+    <a href="{% url 'view_statistics' %}">
+        <button>Перейти к анализу статистики</button>
+    </a>
+    {% endif %}
+
+    <br><br>
+    <a href="/">Назад на главную</a>
+</body>
+</html>
