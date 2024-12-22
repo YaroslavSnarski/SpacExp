@@ -1,4 +1,3 @@
-
 # pdf_processor.py
 
 import time
@@ -7,7 +6,8 @@ from PyPDF2 import PdfReader
 from datetime import datetime
 from .base_processor import FileProcessor
 import re
-
+import time
+import PyPDF2 
 process_logger = logging.getLogger('process')
 error_logger = logging.getLogger('error')
 
@@ -37,12 +37,6 @@ class PDFProcessor(FileProcessor):
             error_logger.error(f"Error processing PDF {filepath}: {e}")
             return {"error": str(e)}
 
-#    def parse_pdf_date(self, date_str):
-#        if date_str.startswith('D:'):
-#            date_str = date_str[2:].split('+')[0].replace("Z", "")
-#            return datetime.strptime(date_str, '%Y%m%d%H%M%S').strftime('%Y-%m-%d %H:%M:%S')
-#        return date_str
-
     def parse_pdf_date(self, date_str):
         if date_str.startswith('D:'):
             # Remove 'D:' prefix and split timezone offset, if any
@@ -56,3 +50,29 @@ class PDFProcessor(FileProcessor):
                 error_logger.error(f"Date parsing error for {date_str}")
                 return "Unknown Date"
         return date_str
+
+class PDFProcessorWeb(FileProcessor):
+    def __init__(self, file_path=None):
+        super().__init__()
+
+    def process(self, file_path):
+        try:
+            start_time = time.time()
+            file_info = self.get_generic_info(file_path)
+            
+            pdf_file = PyPDF2.PdfReader(file_path)
+            page_count = len(pdf_file.pages)  # страницы
+
+            file_info.update({
+                "type": "pdf",  # тип файла
+                "page_count": page_count,
+                # any meta-data
+            })
+
+            elapsed_time = time.time() - start_time
+            logging.info(f"PDF processed: {file_path} in {elapsed_time:.2f} seconds")
+
+            return file_info
+        except Exception as e:
+            logging.error(f"Error processing PDF {file_path}: {e}")
+            return {"type": "pdf", "error": str(e)}  # setting error type

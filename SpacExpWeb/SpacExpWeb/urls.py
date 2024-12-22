@@ -16,15 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
+from api.views import index
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),  # Админ-панель
-    path('', include('spacexapp.urls')),  # Подключение маршрутов из spacexapp
+    path('', index, name='index'),
+    path('api/', include('api.urls')),
+
 ]
 
-# Настройка для обработки медиа-файлов
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

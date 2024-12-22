@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика файлов</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">SpacExp Web</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/api/statistics-page/">Статистика</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Статистика по файлам</h1>
+
+        <div class="statistics-section mb-4">
+            <h2>Статистика по расширениям</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Расширение</th>
+                        <th>Количество файлов</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stat in file_statistics %}
+                    <tr>
+                        <td>{{ stat.extension }}</td>
+                        <td>{{ stat.count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="statistics-section mb-4">
+            <h2>Топ самых больших файлов</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Файл</th>
+                        <th>Размер (в байтах)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for file in largest_files %}
+                    <tr>
+                        <td>{{ file.file_name }}</td>
+                        <td>{{ file.file_size }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="statistics-section mb-4">
+            <h2>Топ самых больших изображений (по площади)</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Файл</th>
+                        <th>Ширина</th>
+                        <th>Высота</th>
+                        <th>Площадь</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for image in largest_images %}
+                    <tr>
+                        <td>{{ image.file_name }}</td>
+                        <td>{{ image.width }}</td>
+                        <td>{{ image.height }}</td>
+                        <td>{{ image.calculated_area }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="statistics-section mb-4">
+            <h2>Топ документов по количеству страниц</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Файл</th>
+                        <th>Количество страниц</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in largest_documents %}
+                    <tr>
+                        <td>{{ document.file_name }}</td>
+                        <td>{{ document.page_count }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <a href="/" class="btn btn-primary btn-back">Вернуться на главную</a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

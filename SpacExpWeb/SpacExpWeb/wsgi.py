@@ -1,5 +1,5 @@
 """
-WSGI config for SpacExpWeb project.
+WSGI config for word_page_counter project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
