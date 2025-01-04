@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Вспомогательные модули SpacExp &#8212; документация SpacExp 01.01.2015</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5ce1daeb"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=5b699b7f"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Модули utils (GUI)" href="utils.html" />
+    <link rel="prev" title="Модули SpacExp" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-SpacExp.audio_processor">
+<span id="spacexp"></span><span id="modules-submodules"></span><h1>Вспомогательные модули SpacExp<a class="headerlink" href="#module-SpacExp.audio_processor" title="Ссылка на этот заголовок">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.AudioProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.audio_processor.</span></span><span class="sig-name descname"><span class="pre">AudioProcessor</span></span><a class="headerlink" href="#SpacExp.audio_processor.AudioProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.audio_processor.BaseAudioProcessor" title="SpacExp.audio_processor.BaseAudioProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAudioProcessor</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.AudioProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.audio_processor.AudioProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Процессор для стандартной обработки аудио.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.AudioProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.audio_processor.</span></span><span class="sig-name descname"><span class="pre">AudioProcessorWeb</span></span><a class="headerlink" href="#SpacExp.audio_processor.AudioProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.audio_processor.BaseAudioProcessor" title="SpacExp.audio_processor.BaseAudioProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseAudioProcessor</span></code></a></p>
+<p>Класс для обработки аудиофайлов для веб-приложений, извлекающий метаданные: продолжительность, теги, битрейт,
+частота дискретизации и сериализуя значения тегов для совместимости с веб-форматами.</p>
+<p>Наследует класс FileProcessor и реализует метод process для обработки аудиофайлов в контексте веб-приложений.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.AudioProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.audio_processor.AudioProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает указанный аудиофайл, извлекая метаданные: продолжительность, теги, битрейт и частоту дискретизации,
+а также сериализует значения тегов для совместимости с веб-форматами.</p>
+<dl>
+<dt>Аргументы:</dt><dd><p>filepath (str): Путь к аудиофайлу, который необходимо обработать.</p>
+</dd>
+<dt>Возвращает:</dt><dd><dl>
+<dt>dict: Словарь, содержащий метаданные аудиофайла, включая:</dt><dd><ul class="simple">
+<li><p>„type“: Тип файла, который равен «audio».</p></li>
+<li><p>„audio_duration“: Продолжительность аудиофайла.</p></li>
+<li><p>„audio_tags“: Словарь с сериализованными тегами аудиофайла.</p></li>
+<li><p>„audio_bitrate“: Битрейт аудиофайла.</p></li>
+<li><p>„audio_sample_rate“: Частота дискретизации аудиофайла.</p></li>
+<li><p>Другие общие данные о файле, полученные из родительского класса.</p></li>
+</ul>
+<p>Если возникает ошибка, возвращается словарь с сообщением об ошибке и типом файла.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.BaseAudioProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.audio_processor.</span></span><span class="sig-name descname"><span class="pre">BaseAudioProcessor</span></span><a class="headerlink" href="#SpacExp.audio_processor.BaseAudioProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки аудиофайлов, извлечения метаданных: продолжительность, теги, битрейт и частота дискретизации.</p>
+<p>Наследует класс FileProcessor и реализует метод process для обработки аудиофайлов.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.audio_processor.BaseAudioProcessor.process_audio_file">
+<span class="sig-name descname"><span class="pre">process_audio_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_web</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.audio_processor.BaseAudioProcessor.process_audio_file" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает указанный аудиофайл, извлекая метаданные: продолжительность, теги, битрейт и частоту дискретизации.</p>
+<dl>
+<dt>Аргументы:</dt><dd><p>filepath (str): Путь к аудиофайлу, который необходимо обработать.</p>
+</dd>
+<dt>Возвращает:</dt><dd><dl>
+<dt>dict: Словарь, содержащий метаданные аудиофайла, включая:</dt><dd><ul class="simple">
+<li><p>„audio_duration“: Продолжительность аудиофайла.</p></li>
+<li><p>„audio_tags“: Словарь с тегами аудиофайла.</p></li>
+<li><p>„audio_bitrate“: Битрейт аудиофайла.</p></li>
+<li><p>„audio_sample_rate“: Частота дискретизации аудиофайла.</p></li>
+<li><p>Другие общие данные о файле, полученные из родительского класса.</p></li>
+</ul>
+<p>Если возникает ошибка, возвращается словарь с сообщением об ошибке.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.docx_processor">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.BaseDOCXProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.docx_processor.</span></span><span class="sig-name descname"><span class="pre">BaseDOCXProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.BaseDOCXProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки файлов формата DOC и DOCX, извлекающий метаданные: автор, заголовок и количество страниц.</p>
+<p>Наследует FileProcessor и предоставляет методы для работы с документами Microsoft Word.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.BaseDOCXProcessor.count_word_pages">
+<span class="sig-name descname"><span class="pre">count_word_pages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.BaseDOCXProcessor.count_word_pages" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Подсчитывает количество страниц в файле DOC или DOCX в зависимости от системы и наличия Word.</p>
+<dl class="simple">
+<dt>Аргументы:</dt><dd><p>file_path (str): Путь к файлу DOC или DOCX.</p>
+</dd>
+<dt>Возвращает:</dt><dd><p>int: Количество страниц в документе или None, если подсчет невозможен.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.BaseDOCXProcessor.get_generic_doc_info">
+<span class="sig-name descname"><span class="pre">get_generic_doc_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.BaseDOCXProcessor.get_generic_doc_info" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основной метод для извлечения общей информации о документе.</p>
+<dl class="simple">
+<dt>Аргументы:</dt><dd><p>filepath (str): Путь к файлу.</p>
+</dd>
+<dt>Возвращает:</dt><dd><p>dict: Словарь с общей информацией о файле и метаданными документа.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.BaseDOCXProcessor.is_word_installed">
+<span class="sig-name descname"><span class="pre">is_word_installed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.BaseDOCXProcessor.is_word_installed" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет, установлен ли Microsoft Word на текущей системе.</p>
+<dl class="simple">
+<dt>Возвращает:</dt><dd><p>bool: True, если Word установлен, иначе False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.BaseDOCXProcessor.process_document">
+<span class="sig-name descname"><span class="pre">process_document</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.BaseDOCXProcessor.process_document" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основной метод для обработки DOCX и DOC файлов.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.DOCXProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.docx_processor.</span></span><span class="sig-name descname"><span class="pre">DOCXProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.DOCXProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor" title="SpacExp.docx_processor.BaseDOCXProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDOCXProcessor</span></code></a></p>
+<p>Класс для обработки DOCX и DOC файлов локально.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.DOCXProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.DOCXProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает файл локально.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.DOCXProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.docx_processor.</span></span><span class="sig-name descname"><span class="pre">DOCXProcessorWeb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.DOCXProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor" title="SpacExp.docx_processor.BaseDOCXProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDOCXProcessor</span></code></a></p>
+<p>Класс для обработки DOCX и DOC файлов в веб-приложении, извлекает информацию о количестве страниц и типе файла.</p>
+<p>Наследует BaseDOCXProcessor и предоставляет методы для работы с документами Microsoft Word в контексте веб-приложений.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.DOCXProcessorWeb.convert_doc_to_docx">
+<span class="sig-name descname"><span class="pre">convert_doc_to_docx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">doc_filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.DOCXProcessorWeb.convert_doc_to_docx" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Конвертирует DOC файл в DOCX с помощью LibreOffice на Linux.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.docx_processor.DOCXProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.docx_processor.DOCXProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает файл DOCX или DOC и возвращает информацию, включая количество страниц.</p>
+<dl class="simple">
+<dt>Аргументы:</dt><dd><p>file_path (str): Путь к файлу, который необходимо обработать.</p>
+</dd>
+<dt>Возвращает:</dt><dd><p>dict: Словарь с информацией о файле, включая количество страниц и тип.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.excel_processor">
+<dt class="sig sig-object py" id="SpacExp.excel_processor.ExcelProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.excel_processor.</span></span><span class="sig-name descname"><span class="pre">ExcelProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.excel_processor.ExcelProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки Excel файлов формата .xlsx.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Извлекает общее количество листов в файле Excel.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.excel_processor.ExcelProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.excel_processor.ExcelProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает Excel файл (.xlsx) и извлекает количество листов.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к Excel файлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о файле, включая:</dt><dd><ul class="simple">
+<li><p>num_sheets (int): Количество листов в книге.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.excel_processor.ExcelProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.excel_processor.</span></span><span class="sig-name descname"><span class="pre">ExcelProcessorWeb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.excel_processor.ExcelProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки Excel файлов форматов .xls и .xlsx.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Извлекает количество листов и их названия из файла Excel.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.excel_processor.ExcelProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.excel_processor.ExcelProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает Excel файл (.xls или .xlsx) и извлекает количество листов и их названия.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к Excel файлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о файле, включая:</dt><dd><ul class="simple">
+<li><p>num_sheets (int): Количество листов в книге.</p></li>
+<li><p>sheet_names (list): Список названий листов.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.image_processor">
+<dt class="sig sig-object py" id="SpacExp.image_processor.ImageProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.image_processor.</span></span><span class="sig-name descname"><span class="pre">ImageProcessor</span></span><a class="headerlink" href="#SpacExp.image_processor.ImageProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки изображений.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Извлекает информацию о размере изображения, DPI, метаданных EXIF.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.image_processor.ImageProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.image_processor.ImageProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает изображение и извлекает параметры, такие как размер, DPI и EXIF-данные.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к изображению.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией об изображении, включая:</dt><dd><ul class="simple">
+<li><p>image_width (int): Ширина изображения.</p></li>
+<li><p>image_height (int): Высота изображения.</p></li>
+<li><p>dpi_x (float или None): DPI по горизонтали.</p></li>
+<li><p>dpi_y (float или None): DPI по вертикали.</p></li>
+<li><p>exif_data (dict): Словарь с сырыми EXIF-данными.</p></li>
+<li><p>exif_* (различные ключи EXIF): Индивидуальные данные EXIF.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.image_processor.ImageProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.image_processor.</span></span><span class="sig-name descname"><span class="pre">ImageProcessorWeb</span></span><a class="headerlink" href="#SpacExp.image_processor.ImageProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки изображений в веб-приложении.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(file_path): Извлекает информацию о размере изображения и типе файла.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.image_processor.ImageProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.image_processor.ImageProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает изображение, извлекая его параметры, такие как ширина и высота.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Путь к изображению.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией об изображении, включая:</dt><dd><ul class="simple">
+<li><p>type (str): Тип файла (всегда «image»).</p></li>
+<li><p>width (int): Ширина изображения.</p></li>
+<li><p>height (int): Высота изображения.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.pdf_processor">
+<dt class="sig sig-object py" id="SpacExp.pdf_processor.PDFProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.pdf_processor.</span></span><span class="sig-name descname"><span class="pre">PDFProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.pdf_processor.PDFProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки PDF-файлов.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Извлекает информацию из PDF-файла, включая метаданные и количество страниц.
+parse_pdf_date(date_str): Парсит дату в формате PDF в читаемый формат.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.pdf_processor.PDFProcessor.parse_pdf_date">
+<span class="sig-name descname"><span class="pre">parse_pdf_date</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">date_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.pdf_processor.PDFProcessor.parse_pdf_date" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Парсит дату в формате PDF в читаемый формат (YYYY-MM-DD HH:MM:SS).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>date_str</strong> (<em>str</em>) – Дата в формате PDF, например, „D:YYYYMMDDHHMMSS“.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Парсенная дата в читаемом формате. Если парсинг невозможен, возвращается «Unknown Date».</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.pdf_processor.PDFProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.pdf_processor.PDFProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает PDF-файл и извлекает его параметры, такие как количество страниц и метаданные.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к PDF-файлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о PDF-файле, включая:</dt><dd><ul class="simple">
+<li><p>num_pages (int): Количество страниц.</p></li>
+<li><p>pdf_author (str): Автор документа.</p></li>
+<li><p>pdf_title (str): Название документа.</p></li>
+<li><p>pdf_creation_date (str): Дата создания документа.</p></li>
+<li><p>pdf_modification_date (str): Дата изменения документа.</p></li>
+<li><p>Любые общие параметры из метода <cite>get_generic_info</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.pdf_processor.PDFProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.pdf_processor.</span></span><span class="sig-name descname"><span class="pre">PDFProcessorWeb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.pdf_processor.PDFProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки PDF-файлов в веб-приложении.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(file_path): Извлекает информацию из PDF-файла для использования в веб-приложении.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.pdf_processor.PDFProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.pdf_processor.PDFProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает PDF-файл, извлекая информацию о количестве страниц и типе файла.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> (<em>str</em>) – Путь к PDF-файлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о PDF-файле, включая:</dt><dd><ul class="simple">
+<li><p>type (str): Тип файла (всегда «pdf»).</p></li>
+<li><p>page_count (int): Количество страниц.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.video_processor">
+<dt class="sig sig-object py" id="SpacExp.video_processor.VideoProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.video_processor.</span></span><span class="sig-name descname"><span class="pre">VideoProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.video_processor.VideoProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки видеофайлов.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Обрабатывает видеофайл, извлекая его основные параметры.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.video_processor.VideoProcessor.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.video_processor.VideoProcessor.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает видеофайл и извлекает его параметры: длительность, количество кадров, частота кадров и размеры.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к видеофайлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о видеофайле, включая:</dt><dd><ul class="simple">
+<li><p>video_frame_count (int): Количество кадров.</p></li>
+<li><p>video_fps (float): Частота кадров.</p></li>
+<li><p>video_duration (float): Длительность видео в секундах.</p></li>
+<li><p>video_width (int): Ширина видео в пикселях.</p></li>
+<li><p>video_height (int): Высота видео в пикселях.</p></li>
+<li><p>Любые общие параметры из метода <cite>get_generic_info</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.video_processor.VideoProcessorWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.video_processor.</span></span><span class="sig-name descname"><span class="pre">VideoProcessorWeb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.video_processor.VideoProcessorWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor" title="SpacExp.base_processor.FileProcessor"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileProcessor</span></code></a></p>
+<p>Класс для обработки видеофайлов в веб-приложении.</p>
+<dl class="simple">
+<dt>Наследуется:</dt><dd><p>FileProcessor: Базовый класс для обработки файлов.</p>
+</dd>
+<dt>Методы:</dt><dd><p>process(filepath): Обрабатывает видеофайл, извлекая его основные параметры.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.video_processor.VideoProcessorWeb.process">
+<span class="sig-name descname"><span class="pre">process</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.video_processor.VideoProcessorWeb.process" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает видеофайл и извлекает его параметры: длительность, количество кадров, частота кадров и размеры.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – Путь к видеофайлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt>Словарь с информацией о видеофайле, включая:</dt><dd><ul class="simple">
+<li><p>video_frame_count (int): Количество кадров.</p></li>
+<li><p>video_fps (float): Частота кадров.</p></li>
+<li><p>video_duration (float): Длительность видео в секундах.</p></li>
+<li><p>video_width (int): Ширина видео в пикселях.</p></li>
+<li><p>video_height (int): Высота видео в пикселях.</p></li>
+<li><p>Любые общие параметры из метода <cite>get_generic_info</cite>.</p></li>
+</ul>
+</dd>
+</dl>
+<p>В случае ошибки возвращает словарь с ключом «error» и описанием ошибки.</p>
+</p>
+</dd>
+<dt class="field-odd">Тип результата<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SpacExp</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Содержание проекта:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Модули SpacExp</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Вспомогательные модули SpacExp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.audio_processor.AudioProcessor"><code class="docutils literal notranslate"><span class="pre">AudioProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.audio_processor.AudioProcessor.process"><code class="docutils literal notranslate"><span class="pre">AudioProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.audio_processor.AudioProcessorWeb"><code class="docutils literal notranslate"><span class="pre">AudioProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.audio_processor.AudioProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">AudioProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.audio_processor.BaseAudioProcessor"><code class="docutils literal notranslate"><span class="pre">BaseAudioProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.audio_processor.BaseAudioProcessor.process_audio_file"><code class="docutils literal notranslate"><span class="pre">BaseAudioProcessor.process_audio_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor.count_word_pages"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.count_word_pages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor.get_generic_doc_info"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.get_generic_doc_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor.is_word_installed"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.is_word_installed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.BaseDOCXProcessor.process_document"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.process_document()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.docx_processor.DOCXProcessor"><code class="docutils literal notranslate"><span class="pre">DOCXProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.DOCXProcessor.process"><code class="docutils literal notranslate"><span class="pre">DOCXProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.docx_processor.DOCXProcessorWeb"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.DOCXProcessorWeb.convert_doc_to_docx"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb.convert_doc_to_docx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.docx_processor.DOCXProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.excel_processor.ExcelProcessor"><code class="docutils literal notranslate"><span class="pre">ExcelProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.excel_processor.ExcelProcessor.process"><code class="docutils literal notranslate"><span class="pre">ExcelProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.excel_processor.ExcelProcessorWeb"><code class="docutils literal notranslate"><span class="pre">ExcelProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.excel_processor.ExcelProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">ExcelProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.image_processor.ImageProcessor"><code class="docutils literal notranslate"><span class="pre">ImageProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.image_processor.ImageProcessor.process"><code class="docutils literal notranslate"><span class="pre">ImageProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.image_processor.ImageProcessorWeb"><code class="docutils literal notranslate"><span class="pre">ImageProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.image_processor.ImageProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">ImageProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.pdf_processor.PDFProcessor"><code class="docutils literal notranslate"><span class="pre">PDFProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.pdf_processor.PDFProcessor.parse_pdf_date"><code class="docutils literal notranslate"><span class="pre">PDFProcessor.parse_pdf_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.pdf_processor.PDFProcessor.process"><code class="docutils literal notranslate"><span class="pre">PDFProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.pdf_processor.PDFProcessorWeb"><code class="docutils literal notranslate"><span class="pre">PDFProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.pdf_processor.PDFProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">PDFProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.video_processor.VideoProcessor"><code class="docutils literal notranslate"><span class="pre">VideoProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.video_processor.VideoProcessor.process"><code class="docutils literal notranslate"><span class="pre">VideoProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.video_processor.VideoProcessorWeb"><code class="docutils literal notranslate"><span class="pre">VideoProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.video_processor.VideoProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">VideoProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Модули utils (GUI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_modules.html">Модули SpacExpWeb</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="modules.html" title="предыдущая глава">Модули SpacExp</a></li>
+      <li>Next: <a href="utils.html" title="следующая глава">Модули utils (GUI)</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Y. Snarski.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/submodules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

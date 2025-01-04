@@ -1,13 +1,40 @@
 import cv2
 from .base_processor import FileProcessor
-import logging
-import time
+import time, os
+from .logging_config import setup_logging
 
-error_logger = logging.getLogger('error')
-process_logger = logging.getLogger('process')
+# логгирование
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+process_logger, error_logger = setup_logging(project_root)
 
 class VideoProcessor(FileProcessor):
+    """
+    Класс для обработки видеофайлов.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(filepath): Обрабатывает видеофайл, извлекая его основные параметры.
+    """
     def process(self, filepath):
+        """
+        Обрабатывает видеофайл и извлекает его параметры: длительность, количество кадров, частота кадров и размеры.
+
+        Args:
+            filepath (str): Путь к видеофайлу.
+
+        Returns:
+            dict: Словарь с информацией о видеофайле, включая:
+                - video_frame_count (int): Количество кадров.
+                - video_fps (float): Частота кадров.
+                - video_duration (float): Длительность видео в секундах.
+                - video_width (int): Ширина видео в пикселях.
+                - video_height (int): Высота видео в пикселях.
+                - Любые общие параметры из метода `get_generic_info`.
+
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(filepath)
@@ -38,7 +65,33 @@ class VideoProcessor(FileProcessor):
 
 
 class VideoProcessorWeb(FileProcessor):
+    """
+    Класс для обработки видеофайлов в веб-приложении.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(filepath): Обрабатывает видеофайл, извлекая его основные параметры.
+    """
     def process(self, filepath):
+        """
+        Обрабатывает видеофайл и извлекает его параметры: длительность, количество кадров, частота кадров и размеры.
+
+        Args:
+            filepath (str): Путь к видеофайлу.
+
+        Returns:
+            dict: Словарь с информацией о видеофайле, включая:
+                - video_frame_count (int): Количество кадров.
+                - video_fps (float): Частота кадров.
+                - video_duration (float): Длительность видео в секундах.
+                - video_width (int): Ширина видео в пикселях.
+                - video_height (int): Высота видео в пикселях.
+                - Любые общие параметры из метода `get_generic_info`.
+
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(filepath)

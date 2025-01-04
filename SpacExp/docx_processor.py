@@ -1,56 +1,103 @@
+import platform
+import subprocess
 from .base_processor import FileProcessor
-from win32com.client import Dispatch
-import logging
 import os
-import pythoncom
-import win32com.client
 import time
-from docx import Document 
+from docx import Document  # обработка docx без Word
 
-process_logger = logging.getLogger('process')
-error_logger = logging.getLogger('error')
+# условный импорт для Windows
+if platform.system() == "Windows":
+    try:
+        import pythoncom
+        from win32com.client import Dispatch
+        WIN32_AVAILABLE = True
+    except ImportError:
+        WIN32_AVAILABLE = False
+else:
+    WIN32_AVAILABLE = False
 
-class DOCXProcessor(FileProcessor):
+from .logging_config import setup_logging
+process_logger, error_logger = setup_logging(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
+class BaseDOCXProcessor(FileProcessor):
+    """
+    Класс для обработки файлов формата DOC и DOCX, извлекающий метаданные: автор, заголовок и количество страниц.
+
+    Наследует FileProcessor и предоставляет методы для работы с документами Microsoft Word.
+    """
     def __init__(self, default_author="Unknown Author"):
+        """
+        Инициализирует процессор DOCX с указанным автором по умолчанию.
+
+        Аргументы:
+            default_author (str): Имя автора, используемое по умолчанию, если не указано иное.
+        """
         super().__init__(default_author=default_author)
 
-    def process(self, filepath):
-        """Обрабатывает файл DOCX или DOC и возвращает информацию."""
-        return self.get_document_info(filepath)
+    def is_word_installed(self):
+        """
+        Проверяет, установлен ли Microsoft Word на текущей системе.
 
-    def get_doc_info_with_com(self, filepath):
-        """Использует COM для извлечения метаданных и подсчёта страниц."""
-        filepath = os.path.abspath(filepath)
-        if not os.path.exists(filepath):
-            error_logger.error(f"File not found: {filepath}")
-            return None
-
-        pythoncom.CoInitialize()
-        word = None
-        try:
-            word = Dispatch("Word.Application")
-            doc = word.Documents.Open(filepath, ReadOnly=True)
-            properties = {
-                "author": doc.BuiltInDocumentProperties("Author").Value,
-                "title": doc.BuiltInDocumentProperties("Title").Value,
-                "page_count": doc.ComputeStatistics(2),  # wdStatisticPages
-            }
-            process_logger.info(f"Extracted COM properties for {filepath}")
-            doc.Close(False)
-            return properties
-        except Exception as e:
-            error_logger.error(f"COM processing failed for {filepath}: {e}")
-            return None
-        finally:
-            if word:
+        Возвращает:
+            bool: True, если Word установлен, иначе False.
+        """
+        if platform.system() == "Windows" and WIN32_AVAILABLE:
+            try:
+                pythoncom.CoInitialize()
+                word = Dispatch("Word.Application")
                 word.Quit()
-            pythoncom.CoUninitialize()
+                return True
+            except Exception:
+                return False
+            finally:
+                pythoncom.CoUninitialize()
+        return False
 
-    def get_docx_page_count(self, filepath):
-        """Оценивает количество страниц в DOCX файле через COM."""
+    def count_word_pages(self, filepath):
+        """
+        Подсчитывает количество страниц в файле DOC или DOCX в зависимости от системы и наличия Word.
+
+        Аргументы:
+            file_path (str): Путь к файлу DOC или DOCX.
+
+        Возвращает:
+            int: Количество страниц в документе или None, если подсчет невозможен.
+        """
         filepath = os.path.abspath(filepath)
         if not os.path.exists(filepath):
             error_logger.error(f"File not found: {filepath}")
+            return None
+
+        system = platform.system()
+
+        if system == "Windows" and WIN32_AVAILABLE:
+            if self.is_word_installed():
+                return self._count_pages_with_word(filepath)
+            else:
+                return self._count_pages_with_docx(filepath)
+        elif system == "Linux":
+            if filepath.endswith('.doc'):
+                docx_filepath = self.convert_doc_to_docx(filepath)
+                print(docx_filepath)
+                return self._count_pages_with_docx(docx_filepath)
+            else:
+                return self._count_pages_with_docx(filepath)
+        else:
+            error_logger.error(f"Unsupported system for page count: {system}")
+            return None
+
+    def _count_pages_with_word(self, filepath):
+        """
+        Подсчет страниц через Microsoft Word.
+
+        Аргументы:
+            filepath (str): Путь к файлу.
+
+        Возвращает:
+            int: Количество страниц или None при ошибке.
+        """
+        if not WIN32_AVAILABLE:
+            error_logger.error("win32com is not available on this system.")
             return None
 
         pythoncom.CoInitialize()
@@ -63,97 +110,117 @@ class DOCXProcessor(FileProcessor):
             doc.Close(False)
             return page_count
         except Exception as e:
-            error_logger.error(f"Failed to estimate pages for DOCX file {filepath}: {e}")
+            error_logger.error(f"Failed to estimate pages for {filepath} with Word: {e}")
             return None
         finally:
             if word:
                 word.Quit()
             pythoncom.CoUninitialize()
 
-    def get_docx_info(self, filepath):
-        """Извлекает информацию из DOCX файлов."""
-        process_logger.info(f"Processing DOCX file: {filepath}")
-        page_count = self.get_docx_page_count(filepath)
+    def _count_pages_with_docx(self, filepath):
+        """
+        Подсчет страниц с использованием библиотеки python-docx.
+
+        Аргументы:
+            filepath (str): Путь к файлу.
+
+        Возвращает:
+            int: Оценочное количество страниц или None при ошибке.
+        """
+        try:
+            doc = Document(filepath)
+            #paragraphs = len(doc.paragraphs)
+            # количество символов в документе
+            total_chars = sum(len(paragraph.text) for paragraph in doc.paragraphs)
+            # примерная оценка, которая может сильно отклоняться
+            #estimated_pages = max(1, paragraphs // 7)  # пусть 7 параграфов на страницу
+            estimated_pages = max(1, total_chars // 1300)  # пусть 1.3k символов на страницу
+            process_logger.info(f"Estimated page count for {filepath} using python-docx: {estimated_pages}")
+            return estimated_pages
+        except Exception as e:
+            error_logger.error(f"Failed to estimate pages for {filepath} with python-docx: {e}")
+            return None
+
+    def get_generic_doc_info(self, filepath, default_author=None):
+        """
+        Основной метод для извлечения общей информации о документе.
+
+        Аргументы:
+            filepath (str): Путь к файлу.
+
+        Возвращает:
+            dict: Словарь с общей информацией о файле и метаданными документа.
+        """
+        page_count = self.count_word_pages(filepath)
         return {
-            "author": self.default_author,  # Метаданные авторства не поддерживаются напрямую
-            "title": "Unknown Title",  # Извлечение заголовка можно добавить при необходимости
+            "author": default_author or self.default_author,
             "page_count": page_count,
         }
 
-    def get_doc_info(self, filepath):
-        """Извлекает информацию из DOC файлов."""
-        process_logger.info(f"Processing DOC file: {filepath}")
-        return self.get_doc_info_with_com(filepath)
-
-    def get_document_info(self, filepath):
+    def process_document(self, filepath):
         """Основной метод для обработки DOCX и DOC файлов."""
         file_info = self.get_generic_info(filepath)
-        if file_info is None:
+        if not file_info:
             return None
 
         extension = file_info.get("extension")
-        if extension == "docx":
-            doc_info = self.get_docx_info(filepath)
-        elif extension == "doc":
-            doc_info = self.get_doc_info(filepath)
+        if extension in {"docx", "doc"}:
+            doc_info = self.get_generic_doc_info(filepath)
+            file_info.update(doc_info)
         else:
             error_logger.error(f"Unsupported file type: {filepath}")
             return None
 
-        if doc_info:
-            file_info.update(doc_info)
-            process_logger.info(f"Successfully processed: {filepath}")
-        else:
-            error_logger.error(f"Failed to process: {filepath}")
-
+        process_logger.info(f"Successfully processed: {filepath}")
         return file_info
 
-class DOCXProcessorWeb(FileProcessor):
-    def __init__(self, file_path=None):
-        super().__init__()
-        # Инициализация для DOCXProcessorWeb (если нужно)
 
-    def process(self, file_path):
+class DOCXProcessor(BaseDOCXProcessor):
+    """Класс для обработки DOCX и DOC файлов локально."""
+    def process(self, filepath):
+        """Обрабатывает файл локально."""
+        return self.process_document(filepath)
+
+
+class DOCXProcessorWeb(BaseDOCXProcessor):
+    """
+    Класс для обработки DOCX и DOC файлов в веб-приложении, извлекает информацию о количестве страниц и типе файла.
+
+    Наследует BaseDOCXProcessor и предоставляет методы для работы с документами Microsoft Word в контексте веб-приложений.
+    """
+    def process(self, filepath):
+        """
+        Обрабатывает файл DOCX или DOC и возвращает информацию, включая количество страниц.
+
+        Аргументы:
+            file_path (str): Путь к файлу, который необходимо обработать.
+
+        Возвращает:
+            dict: Словарь с информацией о файле, включая количество страниц и тип.
+        """
         try:
             start_time = time.time()
-            file_info = self.get_generic_info(file_path)
-            
-            extension = file_path.split('.')[-1].lower()
-
-            # Обработка .doc и .docx файлов через win32com
-            if extension == "doc" or extension == "docx":
-                page_count = self.count_word_pages(file_path)
-            else:
-                raise ValueError(f"Unsupported file extension: {extension}")
-
-            file_info.update({
-                "type": "document",  # Указываем тип файла
-                "page_count": page_count,
-            })
-
+            file_info = self.process_document(filepath)
             elapsed_time = time.time() - start_time
-            logging.info(f"DOCX processed: {file_path} in {elapsed_time:.2f} seconds")
-
+            process_logger.info(f"DOCX processed: {filepath} in {elapsed_time:.2f} seconds")
             return file_info
         except Exception as e:
-            logging.error(f"Error processing DOCX {file_path}: {e}")
-            return {"type": "document", "error": str(e)}  # Устанавливаем тип даже при ошибке
+            error_logger.error(f"Error processing DOCX {filepath}: {e}")
+            return {"type": "document", "error": str(e)}
 
-    def count_word_pages(self, file_path):
-        """Функция для подсчета страниц в .doc и .docx файле с помощью win32com."""
+
+    def convert_doc_to_docx(self, doc_filepath):
+        """
+        Конвертирует DOC файл в DOCX с помощью LibreOffice на Linux.
+        """
         try:
-            pythoncom.CoInitialize()
-            word_app = win32com.client.Dispatch("Word.Application")
-            word_app.Visible = False  # Отключаем отображение приложения Word
-            try:
-                # Открытие файла в режиме только для чтения
-                doc = word_app.Documents.Open(file_path, ReadOnly=True)
-                page_count = doc.ComputeStatistics(2)  # wdStatisticPages = 2
-                doc.Close()
-            finally:
-                word_app.Quit()
-                pythoncom.CoUninitialize()
-            return page_count
-        except Exception as e:
-            logging.error(f"Error counting Word pages for file {file_path}: {e}")
+            # Определим путь для выходного файла
+            docx_filepath = os.path.splitext(doc_filepath)[0] + '.docx'
+            
+            # Выполним команду для конвертации через LibreOffice
+            subprocess.run(['libreoffice', '--headless', '--convert-to', 'docx', '--outdir', os.path.dirname(doc_filepath), doc_filepath], check=True)            
+            process_logger.info(f"Converted {doc_filepath} to {docx_filepath}")
+            return docx_filepath
+        except subprocess.CalledProcessError as e:
+            error_logger.error(f"Failed to convert {doc_filepath} to DOCX: {e}")
             return None

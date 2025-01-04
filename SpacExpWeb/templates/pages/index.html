@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница</title>
+    <!-- Bootstrap CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <!-- Include the navbar -->
+    {% include 'partials/navbar.html' %}
+
+    <!-- Main Content -->
+    <div class="cover-container">
+        <main class="px-3">
+            <h1>Добро пожаловать!</h1>
+            <p class="lead">Общий объём проиндексированных файлов: <strong>{{ total_size }}</strong></p>
+            <p class="lead">Количество файлов: <strong>{{ total_files }}</strong></p>
+            <div class="form-container">
+                <form method="post" action="/api/process-files/" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="folder_input" class="form-label">Выберите папку для обработки:</label>
+                        <input type="file" class="form-control" id="folder_input" name="files" multiple webkitdirectory>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Проанализировать</button>
+                </form>
+                <!-- Альтернативная форма ввода пути к папке -->
+                <form method="post" action="/api/process-files/" class="mt-4">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="folder_path_input" class="form-label">Или введите путь к папке для анализа:</label>
+                        <input type="text" class="form-control" id="folder_path_input" name="folder_path" placeholder="Введите путь к папке">
+                    </div>
+                    <button type="submit" class="btn btn-secondary">Анализировать по пути</button>
+                </form>
+            </div>
+            <p class="mt-5 mb-3">
+                <a href="/api/statistics-page/" class="btn btn-link">Посмотреть статистику</a>
+            </p>
+        </main>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Модули SpacExp &#8212; документация SpacExp 01.01.2015</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5ce1daeb"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=5b699b7f"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Вспомогательные модули SpacExp" href="submodules.html" />
+    <link rel="prev" title="Документация SpacExp" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="module-SpacExp.file_manager">
+<span id="spacexp"></span><span id="modules"></span><h1>Модули SpacExp<a class="headerlink" href="#module-SpacExp.file_manager" title="Ссылка на этот заголовок">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.file_manager.BaseFileManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.file_manager.</span></span><span class="sig-name descname"><span class="pre">BaseFileManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.BaseFileManager" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Базовый класс для управления файлами.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.BaseFileManager.get_files">
+<span class="sig-name descname"><span class="pre">get_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.BaseFileManager.get_files" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Генерирует список файлов в указанной директории.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Путь к каждому файлу в директории.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.BaseFileManager.save_results">
+<span class="sig-name descname"><span class="pre">save_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.BaseFileManager.save_results" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохраняет результаты обработки файлов в CSV файл.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – Список с результатами обработки файлов.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManager">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.file_manager.</span></span><span class="sig-name descname"><span class="pre">FileManager</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManager" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.file_manager.BaseFileManager" title="SpacExp.file_manager.BaseFileManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseFileManager</span></code></a></p>
+<p>Класс для обработки файлов в указанной директории.
+Для каждого файла определяется MIME-тип, и в зависимости от типа выбирается соответствующий обработчик.
+Результаты обработки сохраняются в CSV файл.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManager.get_handler">
+<span class="sig-name descname"><span class="pre">get_handler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mime_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManager.get_handler" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает обработчик для MIME-типа.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManager.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManager.run" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запускает процесс обработки файлов в указанной директории.
+Результаты обработки сохраняются в CSV файл.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManagerWeb">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.file_manager.</span></span><span class="sig-name descname"><span class="pre">FileManagerWeb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManagerWeb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <a class="reference internal" href="#SpacExp.file_manager.BaseFileManager" title="SpacExp.file_manager.BaseFileManager"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseFileManager</span></code></a></p>
+<p>Класс для обработки файлов в веб-среде.
+Для каждого файла определяется расширение, и в зависимости от расширения выбирается соответствующий обработчик.
+Результаты обработки возвращаются в виде списка словарей.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManagerWeb.get_file_type">
+<span class="sig-name descname"><span class="pre">get_file_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManagerWeb.get_file_type" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определяет тип файла на основе его расширения.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Параметры<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_path</strong> – Путь к файлу.</p>
+</dd>
+<dt class="field-even">Результат<span class="colon">:</span></dt>
+<dd class="field-even"><p>Тип файла.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManagerWeb.get_processor">
+<span class="sig-name descname"><span class="pre">get_processor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extension</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManagerWeb.get_processor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает обработчик для расширения файла.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.file_manager.FileManagerWeb.process_files">
+<span class="sig-name descname"><span class="pre">process_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.file_manager.FileManagerWeb.process_files" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает файлы в указанной папке.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Результат<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Список словарей с результатами обработки файлов.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-SpacExp.base_processor">
+<dt class="sig sig-object py" id="SpacExp.base_processor.FileProcessor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">SpacExp.base_processor.</span></span><span class="sig-name descname"><span class="pre">FileProcessor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_author</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Unknown</span> <span class="pre">Author'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.base_processor.FileProcessor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовые классы: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Класс для обработки файлов. Предоставляет базовые методы для получения информации о файле.</p>
+<dl class="simple">
+<dt>Аргументы:</dt><dd><p>default_author (str): Имя автора по умолчанию. Используется для тегирования файлов, если автор не указан.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="SpacExp.base_processor.FileProcessor.get_generic_info">
+<span class="sig-name descname"><span class="pre">get_generic_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#SpacExp.base_processor.FileProcessor.get_generic_info" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Извлекает общую информацию о файле: размер, время создания, время последней модификации и расширение.</p>
+<dl>
+<dt>Аргументы:</dt><dd><p>filepath (str): Путь к файлу, для которого требуется получить информацию.</p>
+</dd>
+<dt>Возвращает:</dt><dd><dl class="simple">
+<dt>dict: Словарь с информацией о файле, включая:</dt><dd><ul class="simple">
+<li><p>„file_path“: Путь к файлу.</p></li>
+<li><p>„file_name“: Имя файла.</p></li>
+<li><p>„file_size“: Размер файла в байтах.</p></li>
+<li><p>„creation_time“: Время создания файла.</p></li>
+<li><p>„modification_time“: Время последней модификации файла.</p></li>
+<li><p>„extension“: Расширение файла.</p></li>
+</ul>
+</dd>
+</dl>
+<p>Если возникает ошибка при доступе к файлу, возвращается None, и ошибка записывается в лог.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">SpacExp</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Содержание проекта:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Модули SpacExp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.file_manager.BaseFileManager"><code class="docutils literal notranslate"><span class="pre">BaseFileManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.BaseFileManager.get_files"><code class="docutils literal notranslate"><span class="pre">BaseFileManager.get_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.BaseFileManager.save_results"><code class="docutils literal notranslate"><span class="pre">BaseFileManager.save_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.file_manager.FileManager"><code class="docutils literal notranslate"><span class="pre">FileManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.FileManager.get_handler"><code class="docutils literal notranslate"><span class="pre">FileManager.get_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.FileManager.run"><code class="docutils literal notranslate"><span class="pre">FileManager.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.file_manager.FileManagerWeb"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.FileManagerWeb.get_file_type"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.get_file_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.FileManagerWeb.get_processor"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.get_processor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.file_manager.FileManagerWeb.process_files"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.process_files()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#SpacExp.base_processor.FileProcessor"><code class="docutils literal notranslate"><span class="pre">FileProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#SpacExp.base_processor.FileProcessor.get_generic_info"><code class="docutils literal notranslate"><span class="pre">FileProcessor.get_generic_info()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submodules.html">Вспомогательные модули SpacExp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Модули utils (GUI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_modules.html">Модули SpacExpWeb</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="предыдущая глава">Документация SpacExp</a></li>
+      <li>Next: <a href="submodules.html" title="следующая глава">Вспомогательные модули SpacExp</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Y. Snarski.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/modules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

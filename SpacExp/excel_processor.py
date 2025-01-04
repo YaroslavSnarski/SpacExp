@@ -1,14 +1,37 @@
 import openpyxl
 from .base_processor import FileProcessor
-import logging
+import os
 import time
 import xlrd
+from .logging_config import setup_logging
 
-error_logger = logging.getLogger('error')
-process_logger = logging.getLogger('process')
+# логгирование
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+process_logger, error_logger = setup_logging(project_root)
 
 class ExcelProcessor(FileProcessor):
+    """
+    Класс для обработки Excel файлов формата .xlsx.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(filepath): Извлекает общее количество листов в файле Excel.
+    """
     def process(self, filepath):
+        """
+        Обрабатывает Excel файл (.xlsx) и извлекает количество листов.
+
+        Args:
+            filepath (str): Путь к Excel файлу.
+
+        Returns:
+            dict: Словарь с информацией о файле, включая:
+                - num_sheets (int): Количество листов в книге.
+
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(filepath)
@@ -25,7 +48,29 @@ class ExcelProcessor(FileProcessor):
             return {"error": str(e)}
 
 class ExcelProcessorWeb(FileProcessor):
+    """
+    Класс для обработки Excel файлов форматов .xls и .xlsx.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(filepath): Извлекает количество листов и их названия из файла Excel.
+    """
     def process(self, filepath):
+        """
+        Обрабатывает Excel файл (.xls или .xlsx) и извлекает количество листов и их названия.
+
+        Args:
+            filepath (str): Путь к Excel файлу.
+
+        Returns:
+            dict: Словарь с информацией о файле, включая:
+                - num_sheets (int): Количество листов в книге.
+                - sheet_names (list): Список названий листов.
+
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(filepath)

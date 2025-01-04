@@ -9,20 +9,11 @@ from django.views.decorators.csrf import csrf_exempt
 import os
 import sys
 import tempfile
-import logging
 from datetime import datetime
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'SpacExp'))))
 from SpacExp.file_manager import FileManagerWeb
-
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
+from utils.gui_humanizer import humanize_file_size
 
 @csrf_exempt
 def process_files_view(request):
@@ -33,7 +24,7 @@ def process_files_view(request):
         # если путь к папке указан, проверяем валидность
         if folder_path:
             if not os.path.exists(folder_path):
-                return render(request, "error_page.html", {"error_message": "Invalid folder path."})
+                return render(request, "pages/error_page.html", {"error_message": "Несуществующий путь к папке."})
             
             # создаём FileManager для обработки файлов в папке
             file_manager = FileManagerWeb(folder_path)
@@ -43,7 +34,7 @@ def process_files_view(request):
             # если путь не указан, обрабатываем загруженные файлы
             uploaded_files = request.FILES.getlist("files")
             if not uploaded_files:
-                return render(request, "error_page.html", {"error_message": "No files provided."})
+                return render(request, "pages/error_page.html", {"error_message": "Вы не выбрали папку. Пожалуйста, выберите папку."})
             
             # создаём временную папку для хранения загруженных файлов
             with tempfile.TemporaryDirectory() as temp_dir:
@@ -80,15 +71,16 @@ def process_files_view(request):
             )
 
         return HttpResponseRedirect("/api/statistics-page/")
-    return render(request, "error_page.html", {"error_message": "Invalid request method."})
+    return render(request, "pages/error_page.html", {"error_message": "Неверный метод запроса."})
 
 def index(request):
     total_size = FileRecord.objects.aggregate(Sum('file_size'))['file_size__sum'] or 0  # размер файлов в байтах
     total_files = FileRecord.objects.count()  # количество файлов
-    total_size_gb = total_size / (1024 ** 3)  # размер в гигабайтах
+#    total_size_gb = total_size / (1024 ** 3)  # размер в гигабайтах
+    total_size_humanized = humanize_file_size(total_size)  # размер в читаемом формате
 
-    return render(request, 'index.html', {
-        'total_size': total_size_gb,
+    return render(request, 'pages/index.html', {
+        'total_size': total_size_humanized,
         'total_files': total_files
     })
 
@@ -96,10 +88,8 @@ def statistics_page_view(request):
     # статистика по расширениям
     file_statistics = FileRecord.objects.values("extension").annotate(count=Count("id")).order_by("-count")
 
-    # топ 10 самых больших файлов, независимо от расширения
-    largest_files = FileRecord.objects.order_by("-file_size").annotate(
-        file_size_mb=F("file_size") / 1048576.0  # байты в МБ
-    ).values("file_name", "file_size_mb")[:10]
+    # Топ 10 самых больших файлов
+    largest_files = FileRecord.objects.order_by("-file_size").values("file_name", "file_size")[:10]
 
     # топ 10 самых больших изображений
     largest_images = FileRecord.objects.filter(type="image").annotate(
@@ -111,13 +101,17 @@ def statistics_page_view(request):
         "-page_count"
     ).values("file_name", "page_count")[:10]
 
+    # общий размер файлов
+    total_size = FileRecord.objects.aggregate(Sum('file_size'))['file_size__sum'] or 0
+    total_size_humanized = humanize_file_size(total_size)
+
     # чек на пустоту или None
     response_data = {
         "file_statistics": list(file_statistics),
         "largest_files": [
             {
                 "file_name": file["file_name"],
-                "file_size": f'{file["file_size_mb"]:.2f} MB' if file["file_size_mb"] else "0.00 MB"
+                "file_size": humanize_file_size(file["file_size"]) if file["file_size"] else 0,
             }
             for file in largest_files
         ],
@@ -137,18 +131,18 @@ def statistics_page_view(request):
             }
             for doc in largest_documents
         ],
+        "total_size": total_size_humanized
+
     }
 
-    return render(request, "statistics.html", response_data)
+    return render(request, "pages/statistics.html", response_data)
 
 def statistics_api_view(request):
     # статистика по расширениям, отсортированная по числу файлов (убывание)
     file_statistics = FileRecord.objects.values("extension").annotate(count=Count("id")).order_by("-count")
 
     # топ 10 самых больших файлов, независимо от расширения
-    largest_files = FileRecord.objects.order_by("-file_size").annotate(
-        file_size_mb=F("file_size") / 1048576.0  
-    ).values("file_name", "file_size_mb")[:10]
+    largest_files = FileRecord.objects.order_by("-file_size").values("file_name", "file_size")[:10]
 
     # топ 10 самых больших изображений (по площади)
     largest_images = FileRecord.objects.filter(type="image").annotate(
@@ -166,7 +160,7 @@ def statistics_api_view(request):
         "largest_files": [
             {
                 "file_name": file["file_name"],
-                "file_size": f'{file["file_size_mb"]:.2f} MB' 
+                "file_size": humanize_file_size(file["file_size"]),
             }
             for file in largest_files
         ],

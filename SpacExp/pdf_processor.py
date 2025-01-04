@@ -1,18 +1,46 @@
 # pdf_processor.py
-
-import time
+import time, os
 import logging
 from PyPDF2 import PdfReader
 from datetime import datetime
 from .base_processor import FileProcessor
 import re
-import time
 import PyPDF2 
-process_logger = logging.getLogger('process')
-error_logger = logging.getLogger('error')
+from .logging_config import setup_logging
+
+# логгирование
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+process_logger, error_logger = setup_logging(project_root)
 
 class PDFProcessor(FileProcessor):
+    """
+    Класс для обработки PDF-файлов.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(filepath): Извлекает информацию из PDF-файла, включая метаданные и количество страниц.
+        parse_pdf_date(date_str): Парсит дату в формате PDF в читаемый формат.
+    """
     def process(self, filepath):
+        """
+        Обрабатывает PDF-файл и извлекает его параметры, такие как количество страниц и метаданные.
+
+        Args:
+            filepath (str): Путь к PDF-файлу.
+
+        Returns:
+            dict: Словарь с информацией о PDF-файле, включая:
+                - num_pages (int): Количество страниц.
+                - pdf_author (str): Автор документа.
+                - pdf_title (str): Название документа.
+                - pdf_creation_date (str): Дата создания документа.
+                - pdf_modification_date (str): Дата изменения документа.
+                - Любые общие параметры из метода `get_generic_info`.
+
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(filepath)
@@ -38,6 +66,15 @@ class PDFProcessor(FileProcessor):
             return {"error": str(e)}
 
     def parse_pdf_date(self, date_str):
+        """
+        Парсит дату в формате PDF в читаемый формат (YYYY-MM-DD HH:MM:SS).
+
+        Args:
+            date_str (str): Дата в формате PDF, например, 'D:YYYYMMDDHHMMSS'.
+
+        Returns:
+            str: Парсенная дата в читаемом формате. Если парсинг невозможен, возвращается "Unknown Date".
+        """
         if date_str.startswith('D:'):
             # Remove 'D:' prefix and split timezone offset, if any
             date_str = date_str[2:]
@@ -52,10 +89,38 @@ class PDFProcessor(FileProcessor):
         return date_str
 
 class PDFProcessorWeb(FileProcessor):
+    """
+    Класс для обработки PDF-файлов в веб-приложении.
+
+    Наследуется:
+        FileProcessor: Базовый класс для обработки файлов.
+
+    Методы:
+        process(file_path): Извлекает информацию из PDF-файла для использования в веб-приложении.
+    """
     def __init__(self, file_path=None):
+        """
+        Инициализирует процессор PDF-файлов для веб-приложений.
+
+        Args:
+            file_path (str, optional): Путь к файлу. По умолчанию None.
+        """
         super().__init__()
 
     def process(self, file_path):
+        """
+        Обрабатывает PDF-файл, извлекая информацию о количестве страниц и типе файла.
+
+        Args:
+            file_path (str): Путь к PDF-файлу.
+
+        Returns:
+            dict: Словарь с информацией о PDF-файле, включая:
+                - type (str): Тип файла (всегда "pdf").
+                - page_count (int): Количество страниц.
+            
+            В случае ошибки возвращает словарь с ключом "error" и описанием ошибки.
+        """
         try:
             start_time = time.time()
             file_info = self.get_generic_info(file_path)

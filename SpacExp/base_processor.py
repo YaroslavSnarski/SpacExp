@@ -1,40 +1,43 @@
-import pandas as pd
-from docx import Document
-from win32com.client import Dispatch
-from PIL import Image, ExifTags
 import os
-import logging
 from datetime import datetime
-from docx import Document
-from mutagen import File as MutagenFile
-import sys
-from datetime import datetime
-
+from .logging_config import setup_logging
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-sys.path.insert(0, project_root)
-log_file = os.path.join(project_root, 'file_analyzer.log')
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler(log_file),
-        logging.StreamHandler() 
-    ]
-)
-
-# Логгер для ошибок
-error_logger = logging.getLogger('error')
-error_logger.setLevel(logging.ERROR)
-
-# Логгер для процесса
-process_logger = logging.getLogger('process')
-process_logger.setLevel(logging.INFO)
+process_logger, error_logger = setup_logging(project_root)
 
 class FileProcessor:
+    """
+    Класс для обработки файлов. Предоставляет базовые методы для получения информации о файле.
+
+    Аргументы:
+        default_author (str): Имя автора по умолчанию. Используется для тегирования файлов, если автор не указан.
+    """
     def __init__(self, default_author="Unknown Author"):
+        """
+        Инициализирует объект FileProcessor с указанным именем автора по умолчанию.
+
+        Аргументы:
+            default_author (str): Имя автора, используемое по умолчанию для файлов.
+        """
         self.default_author = default_author
 
     def get_generic_info(self, filepath):
+        """
+        Извлекает общую информацию о файле: размер, время создания, время последней модификации и расширение.
+
+        Аргументы:
+            filepath (str): Путь к файлу, для которого требуется получить информацию.
+
+        Возвращает:
+            dict: Словарь с информацией о файле, включая:
+                  - 'file_path': Путь к файлу.
+                  - 'file_name': Имя файла.
+                  - 'file_size': Размер файла в байтах.
+                  - 'creation_time': Время создания файла.
+                  - 'modification_time': Время последней модификации файла.
+                  - 'extension': Расширение файла.
+                  
+            Если возникает ошибка при доступе к файлу, возвращается None, и ошибка записывается в лог.
+        """
         stats = os.stat(filepath)
         creation_time = datetime.fromtimestamp(stats.st_ctime).strftime('%Y-%m-%d %H:%M:%S')
         modification_time = datetime.fromtimestamp(stats.st_mtime).strftime('%Y-%m-%d %H:%M:%S')

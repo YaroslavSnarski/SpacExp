@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Документация SpacExp &#8212; документация SpacExp 01.01.2015</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5ce1daeb"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=5b699b7f"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Модули SpacExp" href="modules.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="spacexp">
+<h1>Документация SpacExp<a class="headerlink" href="#spacexp" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Добро пожаловать в документацию проекта <strong>SpacExp</strong> — системы для индексирования содержимого папок. SpacExp позволяет пользователям эффективно индексировать и организовывать файлы в папках с помощью графического интерфейса (GUI) или через веб-интерфейс. Это решение идеально подходит для управления файлами и быстрого поиска необходимой информации.</p>
+</section>
+<section id="id1">
+<h1>Особенности SpacExp:<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<ul class="simple">
+<li><p>Индексация файлов в папках (с поддержкой различных типов файлов).</p></li>
+<li><p>Поддержка интерфейсов: графического (GUI) и веб-страницы.</p></li>
+<li><p>Возможности для анализа, просмотра и управления метаданными файлов.</p></li>
+<li><p>Поддержка различных форматов документов и мультимедийных файлов.</p></li>
+<li><p>Удобный поиск по метаданным, таким как размер файла, дата создания и модификации, а также другие характеристики.</p></li>
+</ul>
+<p>Система помогает организовать структуру файлов и упрощает доступ к необходимой информации.</p>
+<p>Погрузитесь в детали разработки, просмотра и настройки SpacExp, следуя инструкциям ниже.</p>
+</section>
+<section id="id2">
+<h1>Содержание<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Содержание проекта:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Модули SpacExp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#SpacExp.file_manager.BaseFileManager"><code class="docutils literal notranslate"><span class="pre">BaseFileManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.BaseFileManager.get_files"><code class="docutils literal notranslate"><span class="pre">BaseFileManager.get_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.BaseFileManager.save_results"><code class="docutils literal notranslate"><span class="pre">BaseFileManager.save_results()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManager"><code class="docutils literal notranslate"><span class="pre">FileManager</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManager.get_handler"><code class="docutils literal notranslate"><span class="pre">FileManager.get_handler()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManager.run"><code class="docutils literal notranslate"><span class="pre">FileManager.run()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManagerWeb"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManagerWeb.get_file_type"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.get_file_type()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManagerWeb.get_processor"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.get_processor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.file_manager.FileManagerWeb.process_files"><code class="docutils literal notranslate"><span class="pre">FileManagerWeb.process_files()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor"><code class="docutils literal notranslate"><span class="pre">FileProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="modules.html#SpacExp.base_processor.FileProcessor.get_generic_info"><code class="docutils literal notranslate"><span class="pre">FileProcessor.get_generic_info()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submodules.html">Вспомогательные модули SpacExp</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.AudioProcessor"><code class="docutils literal notranslate"><span class="pre">AudioProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.AudioProcessor.process"><code class="docutils literal notranslate"><span class="pre">AudioProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.AudioProcessorWeb"><code class="docutils literal notranslate"><span class="pre">AudioProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.AudioProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">AudioProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.BaseAudioProcessor"><code class="docutils literal notranslate"><span class="pre">BaseAudioProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.audio_processor.BaseAudioProcessor.process_audio_file"><code class="docutils literal notranslate"><span class="pre">BaseAudioProcessor.process_audio_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.BaseDOCXProcessor"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.BaseDOCXProcessor.count_word_pages"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.count_word_pages()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.BaseDOCXProcessor.get_generic_doc_info"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.get_generic_doc_info()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.BaseDOCXProcessor.is_word_installed"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.is_word_installed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.BaseDOCXProcessor.process_document"><code class="docutils literal notranslate"><span class="pre">BaseDOCXProcessor.process_document()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.DOCXProcessor"><code class="docutils literal notranslate"><span class="pre">DOCXProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.DOCXProcessor.process"><code class="docutils literal notranslate"><span class="pre">DOCXProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.DOCXProcessorWeb"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.DOCXProcessorWeb.convert_doc_to_docx"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb.convert_doc_to_docx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.docx_processor.DOCXProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">DOCXProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.excel_processor.ExcelProcessor"><code class="docutils literal notranslate"><span class="pre">ExcelProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.excel_processor.ExcelProcessor.process"><code class="docutils literal notranslate"><span class="pre">ExcelProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.excel_processor.ExcelProcessorWeb"><code class="docutils literal notranslate"><span class="pre">ExcelProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.excel_processor.ExcelProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">ExcelProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.image_processor.ImageProcessor"><code class="docutils literal notranslate"><span class="pre">ImageProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.image_processor.ImageProcessor.process"><code class="docutils literal notranslate"><span class="pre">ImageProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.image_processor.ImageProcessorWeb"><code class="docutils literal notranslate"><span class="pre">ImageProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.image_processor.ImageProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">ImageProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.pdf_processor.PDFProcessor"><code class="docutils literal notranslate"><span class="pre">PDFProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.pdf_processor.PDFProcessor.parse_pdf_date"><code class="docutils literal notranslate"><span class="pre">PDFProcessor.parse_pdf_date()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.pdf_processor.PDFProcessor.process"><code class="docutils literal notranslate"><span class="pre">PDFProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.pdf_processor.PDFProcessorWeb"><code class="docutils literal notranslate"><span class="pre">PDFProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.pdf_processor.PDFProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">PDFProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.video_processor.VideoProcessor"><code class="docutils literal notranslate"><span class="pre">VideoProcessor</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.video_processor.VideoProcessor.process"><code class="docutils literal notranslate"><span class="pre">VideoProcessor.process()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="submodules.html#SpacExp.video_processor.VideoProcessorWeb"><code class="docutils literal notranslate"><span class="pre">VideoProcessorWeb</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="submodules.html#SpacExp.video_processor.VideoProcessorWeb.process"><code class="docutils literal notranslate"><span class="pre">VideoProcessorWeb.process()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Модули utils (GUI)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.content_search.ContentSearcher"><code class="docutils literal notranslate"><span class="pre">ContentSearcher</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.content_search.ContentSearcher.search"><code class="docutils literal notranslate"><span class="pre">ContentSearcher.search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.content_search.ContentSearcher.search_in_docx"><code class="docutils literal notranslate"><span class="pre">ContentSearcher.search_in_docx()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.content_search.ContentSearcher.search_in_pdf"><code class="docutils literal notranslate"><span class="pre">ContentSearcher.search_in_pdf()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.content_search.ContentSearcher.search_in_txt"><code class="docutils literal notranslate"><span class="pre">ContentSearcher.search_in_txt()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.file_handler.FileHandler"><code class="docutils literal notranslate"><span class="pre">FileHandler</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.file_handler.FileHandler.index_files"><code class="docutils literal notranslate"><span class="pre">FileHandler.index_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.file_handler.FileHandler.show_last_index_info"><code class="docutils literal notranslate"><span class="pre">FileHandler.show_last_index_info()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.menu.MenuCreator"><code class="docutils literal notranslate"><span class="pre">MenuCreator</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.menu.MenuCreator.show_help"><code class="docutils literal notranslate"><span class="pre">MenuCreator.show_help()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.search.FileSearch"><code class="docutils literal notranslate"><span class="pre">FileSearch</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.search.FileSearch.create_search_window"><code class="docutils literal notranslate"><span class="pre">FileSearch.create_search_window()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.search.FileSearch.execute_search"><code class="docutils literal notranslate"><span class="pre">FileSearch.execute_search()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html#utils.statistics_view.StatisticsView"><code class="docutils literal notranslate"><span class="pre">StatisticsView</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.statistics_view.StatisticsView.display_chart"><code class="docutils literal notranslate"><span class="pre">StatisticsView.display_chart()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.statistics_view.StatisticsView.show_extensions"><code class="docutils literal notranslate"><span class="pre">StatisticsView.show_extensions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.statistics_view.StatisticsView.show_top_files"><code class="docutils literal notranslate"><span class="pre">StatisticsView.show_top_files()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="utils.html#utils.statistics_view.StatisticsView.show_top_files_chart"><code class="docutils literal notranslate"><span class="pre">StatisticsView.show_top_files_chart()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="django_modules.html">Модули SpacExpWeb</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.views.humanize_file_size"><code class="docutils literal notranslate"><span class="pre">humanize_file_size()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.views.index"><code class="docutils literal notranslate"><span class="pre">index()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.views.process_files_view"><code class="docutils literal notranslate"><span class="pre">process_files_view()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.views.statistics_api_view"><code class="docutils literal notranslate"><span class="pre">statistics_api_view()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.views.statistics_page_view"><code class="docutils literal notranslate"><span class="pre">statistics_page_view()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="django_modules.html#api.models.FileRecord"><code class="docutils literal notranslate"><span class="pre">FileRecord</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.DoesNotExist"><code class="docutils literal notranslate"><span class="pre">FileRecord.DoesNotExist</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.MultipleObjectsReturned"><code class="docutils literal notranslate"><span class="pre">FileRecord.MultipleObjectsReturned</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.area"><code class="docutils literal notranslate"><span class="pre">FileRecord.area</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.creation_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.creation_time</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.extension"><code class="docutils literal notranslate"><span class="pre">FileRecord.extension</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.file_name"><code class="docutils literal notranslate"><span class="pre">FileRecord.file_name</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.file_path"><code class="docutils literal notranslate"><span class="pre">FileRecord.file_path</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.file_size"><code class="docutils literal notranslate"><span class="pre">FileRecord.file_size</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.get_next_by_creation_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.get_next_by_creation_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.get_next_by_modification_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.get_next_by_modification_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.get_previous_by_creation_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.get_previous_by_creation_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.get_previous_by_modification_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.get_previous_by_modification_time()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.height"><code class="docutils literal notranslate"><span class="pre">FileRecord.height</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.id"><code class="docutils literal notranslate"><span class="pre">FileRecord.id</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.modification_time"><code class="docutils literal notranslate"><span class="pre">FileRecord.modification_time</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.objects"><code class="docutils literal notranslate"><span class="pre">FileRecord.objects</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.page_count"><code class="docutils literal notranslate"><span class="pre">FileRecord.page_count</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.sheet_names"><code class="docutils literal notranslate"><span class="pre">FileRecord.sheet_names</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.type"><code class="docutils literal notranslate"><span class="pre">FileRecord.type</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="django_modules.html#api.models.FileRecord.width"><code class="docutils literal notranslate"><span class="pre">FileRecord.width</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="id3">
+<h1>Как использовать SpacExp?<a class="headerlink" href="#id3" title="Ссылка на этот заголовок">¶</a></h1>
+<ol class="arabic simple">
+<li><p><strong>Запуск приложения через GUI:</strong></p>
+<ul class="simple">
+<li><p>Установите SpacExp и откройте приложение.</p></li>
+<li><p>Выберите папку для индексации.</p></li>
+<li><p>Запустите процесс сканирования.</p></li>
+<li><p>Просматривайте результаты через графический интерфейс.</p></li>
+</ul>
+</li>
+<li><p><strong>Использование веб-интерфейса:</strong></p>
+<ul class="simple">
+<li><p>Перейдите на страницу веб-интерфейса.</p></li>
+<li><p>Загрузите файлы или выберите папку для индексации.</p></li>
+<li><p>Просматривайте и управляйте файлами онлайн.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">SpacExp</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Содержание проекта:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Модули SpacExp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="submodules.html">Вспомогательные модули SpacExp</a></li>
+<li class="toctree-l1"><a class="reference internal" href="utils.html">Модули utils (GUI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="django_modules.html">Модули SpacExpWeb</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="modules.html" title="следующая глава">Модули SpacExp</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2024, Y. Snarski.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

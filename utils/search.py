@@ -4,15 +4,37 @@ from datetime import datetime
 from tkinter import messagebox
 import os
 import sys
-
+from utils.gui_humanizer import humanize_file_size
 
 class FileSearch:
+    """
+    Класс для реализации функциональности поиска файлов по заданным критериям
+    в проиндексированных данных из CSV-файла.
+    """
     def __init__(self, root, output_file):
+        """
+        Инициализирует объект FileSearch и создаёт окно для поиска.
+
+        Параметры:
+        ----------
+        root : tkinter.Tk или tkinter.Toplevel
+            Основное окно приложения Tkinter.
+        output_file : str
+            Путь к CSV файлу с проиндексированными данными.
+        """
         self.root = root  # Сохраняем root как атрибут экземпляра
         self.output_file = output_file
         self.create_search_window(root)
 
     def create_search_window(self, root):
+        """
+        Создаёт окно поиска с полями для ввода критериев и кнопкой запуска поиска.
+
+        Параметры:
+        ----------
+        root : tkinter.Tk или tkinter.Toplevel
+            Основное окно приложения Tkinter.
+        """
         search_window = tk.Toplevel(root)
         search_window.title("Поиск файлов")
         
@@ -52,6 +74,22 @@ class FileSearch:
         ).grid(row=5, column=1)
 
     def execute_search(self, name, min_size, max_size, creation_date, modification_date):
+        """
+        Выполняет поиск файлов по заданным критериям и отображает результаты.
+
+        Параметры:
+        ----------
+        name : str
+            Часть имени файла для поиска.
+        min_size : str
+            Минимальный размер файла в байтах.
+        max_size : str
+            Максимальный размер файла в байтах.
+        creation_date : str
+            Дата создания файла в формате YYYY-MM-DD.
+        modification_date : str
+            Дата модификации файла в формате YYYY-MM-DD.
+        """
         if not os.path.exists(self.output_file):
             messagebox.showwarning("Внимание", "Нет данных для поиска. Сначала выполните индексацию.")
             return
@@ -93,7 +131,7 @@ class FileSearch:
         # Выводим данные для каждого найденного файла
         if not df.empty:
             for _, row in df.iterrows():
-                text.insert("end", f"{row['file_name']} - {row['file_size']} bytes - {row['creation_time']} - {row['modification_time']}\n")
+                text.insert("end", f"{row['file_name']} - {humanize_file_size(row['file_size'])} - {row['creation_time']} - {row['modification_time']}\n")
         else:
             text.insert("end", "Нет результатов, соответствующих критериям поиска.\n")
 
